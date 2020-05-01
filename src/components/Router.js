@@ -5,7 +5,7 @@ import LatestBlocks from './LatestBlocks';
 import LatestTransactions from './LatestTransactions';
 import Block from './Block';
 
-const Router = () =>(
+const Router = () => (
     <BrowserRouter>
         <Switch>
             <Route exact path="/" component={App} />

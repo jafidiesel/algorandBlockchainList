@@ -6,10 +6,10 @@ import { getTimeInUTCFormat } from '../helpers';
 
 class LatestTransactions extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            count : 10,
+            count: 10,
             url: 'https://api.algoexplorer.io/v1/transaction/latest/',
             transactions: {}
         }
@@ -17,8 +17,8 @@ class LatestTransactions extends React.Component {
         this.fetchNewData = this.fetchNewData.bind(this);
 
     }
-    
-    fetchNewData (){
+
+    fetchNewData() {
         fetch(`${this.state.url}${this.state.count}`)
             .then(res => res.json())
             .then((transactions) => {
@@ -30,7 +30,7 @@ class LatestTransactions extends React.Component {
     }
 
 
-    componentDidMount(){
+    componentDidMount() {
         this.fetchNewData();
         this.timerID = setInterval(
             () => this.fetchNewData(),
@@ -38,19 +38,19 @@ class LatestTransactions extends React.Component {
         );
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         clearInterval(this.timerID);
     }
 
-    render(){
+    render() {
         const tdStyle = {
-            maxWidth:"150px"
+            maxWidth: "150px"
         };
 
-        if(!this.state.transactions.length){
-            return( <p>loading...</p>)
-        }else{
-            return(
+        if (!this.state.transactions.length) {
+            return (<p>loading...</p>)
+        } else {
+            return (
                 <div>
                     <h3>Latest Transactions</h3>
 
@@ -67,8 +67,8 @@ class LatestTransactions extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.transactions.reverse().map((element,index)=>{
-                                return(
+                            {this.state.transactions.reverse().map((element, index) => {
+                                return (
                                     <tr key={index}>
                                         <td className="text-truncate" style={tdStyle} >{element.txid}</td>
                                         <td className="text-truncate" style={tdStyle} >{element.from}</td>
@@ -76,13 +76,13 @@ class LatestTransactions extends React.Component {
                                         <td className="text-truncate" style={tdStyle} >{element.type}</td>
                                         <td className="text-truncate" style={tdStyle} >{element.to}</td>
                                         <td className="text-truncate" style={tdStyle} >{element.fee}</td>
-                                        <td className="text-truncate" style={tdStyle} >{`${getTimeInUTCFormat(element.timestamp)}` }</td>
+                                        <td className="text-truncate" style={tdStyle} >{`${getTimeInUTCFormat(element.timestamp)}`}</td>
                                     </tr>
                                 )
                             })}
                         </tbody>
                     </Table>
-                    
+
                     <Link to="/">
                         <Button variant="primary">Back</Button>
                     </Link>

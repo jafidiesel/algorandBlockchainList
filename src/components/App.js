@@ -9,9 +9,9 @@ function App() {
       <Jumbotron className="mt-3" >
         <Container>
           <h1>Latest blocks</h1>
-            <Link to="/blocks">
-              <Button variant="primary">Watch</Button>
-            </Link>
+          <Link to="/blocks">
+            <Button variant="primary">Watch</Button>
+          </Link>
         </Container>
       </Jumbotron>
       <Jumbotron >

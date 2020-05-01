@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { getTimeInUTCFormat } from '../helpers';
 
 class Block extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -15,7 +15,7 @@ class Block extends React.Component {
 
     }
 
-    fetchBlockData(){
+    fetchBlockData() {
         fetch(`${this.state.url}${this.state.idBlock}`)
             .then(res => res.json())
             .then((data) => {
@@ -24,36 +24,36 @@ class Block extends React.Component {
             .catch(console.error)
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.fetchBlockData();
     }
 
-    render(){
-        if(!this.state.data.hash){
-            return( <p>loading...</p>)
-        }else{
+    render() {
+        if (!this.state.data.hash) {
+            return (<p>loading...</p>)
+        } else {
             return (
                 <Container>
-                    <Card  className="mt-3 mb-3" border="secondary" >
+                    <Card className="mt-3 mb-3" border="secondary" >
                         <Card.Body>
                             <Card.Title><b>Round</b> {this.state.data.round}</Card.Title>
                         </Card.Body>
                         <ListGroup className="list-group-flush">
-                            <ListGroupItem><b>Hash:</b> { this.state.data.hash }</ListGroupItem>
-                            <ListGroupItem><b>PrevHash:</b> { this.state.data.prevHash }</ListGroupItem>
-                            <ListGroupItem><b>Proposer:</b> { this.state.data.proposer }</ListGroupItem>
-                            <ListGroupItem><b>Reward:</b> { this.state.data.reward }</ListGroupItem>
-                            <ListGroupItem><b>Seed:</b> { this.state.data.seed }</ListGroupItem>
+                            <ListGroupItem><b>Hash:</b> {this.state.data.hash}</ListGroupItem>
+                            <ListGroupItem><b>PrevHash:</b> {this.state.data.prevHash}</ListGroupItem>
+                            <ListGroupItem><b>Proposer:</b> {this.state.data.proposer}</ListGroupItem>
+                            <ListGroupItem><b>Reward:</b> {this.state.data.reward}</ListGroupItem>
+                            <ListGroupItem><b>Seed:</b> {this.state.data.seed}</ListGroupItem>
                         </ListGroup>
                         <Card.Footer>
-                        <small className="text-muted">UTC Timestamp: { getTimeInUTCFormat(this.state.data.timestamp) }</small>
+                            <small className="text-muted">UTC Timestamp: {getTimeInUTCFormat(this.state.data.timestamp)}</small>
                         </Card.Footer>
                     </Card>
-    
+
                     <Link to="/blocks">
                         <Button variant="primary">Back</Button>
                     </Link>
-    
+
                 </Container>
             )
         }
