@@ -8,7 +8,7 @@ function App() {
     <Container>
       <Jumbotron className="mt-3" >
         <Container>
-          <h1>Latest blocks</h1>
+          <h1>Latest blocks</h1>          
           <Link to="/blocks">
             <Button variant="primary">Watch</Button>
           </Link>

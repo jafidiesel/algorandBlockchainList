@@ -10,7 +10,7 @@ class LatestBlocks extends React.Component {
         super(props);
         this.state = {
             count: 10,
-            url: 'https://api.algoexplorer.io/v1/block/latest/',
+            url: 'block/latest/',
             blocks: {}
         }
 
@@ -25,7 +25,7 @@ class LatestBlocks extends React.Component {
     }
 
     fetchNewData = () => {
-        fetch(`${this.state.url}${this.state.count}`)
+        fetch(`${process.env.REACT_APP_API_V1}${this.state.url}${this.state.count}`)
             .then(res => res.json())
             .then((blocks) => {
                 this.setState({

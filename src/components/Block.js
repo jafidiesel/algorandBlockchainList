@@ -8,7 +8,7 @@ class Block extends React.Component {
         super(props);
 
         this.state = {
-            url: 'https://api.algoexplorer.io/v1/block/',
+            url: 'block/',
             idBlock: this.props.match.params.idBlock,
             data: {}
         }
@@ -16,7 +16,7 @@ class Block extends React.Component {
     }
 
     fetchBlockData = () => {
-        fetch(`${this.state.url}${this.state.idBlock}`)
+        fetch(`${process.env.REACT_APP_API_V1}${this.state.url}${this.state.idBlock}`)
             .then(res => res.json())
             .then((data) => {
                 this.setState({ data })

@@ -10,14 +10,14 @@ class LatestTransactions extends React.Component {
         super(props);
         this.state = {
             count: 10,
-            url: 'https://api.algoexplorer.io/v1/transaction/latest/',
+            url: 'transaction/latest/',
             transactions: []
         }
 
     }
 
     fetchNewData = () => {
-        fetch(`${this.state.url}${this.state.count}`)
+        fetch(`${process.env.REACT_APP_API_V1}${this.state.url}${this.state.count}`)
             .then(res => res.json())
             .then((transactions) => {
                 this.setState({
