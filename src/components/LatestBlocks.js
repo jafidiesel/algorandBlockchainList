@@ -14,7 +14,6 @@ class LatestBlocks extends React.Component {
             blocks: {}
         }
 
-        this.fetchNewData = this.fetchNewData.bind(this);
     }
 
     componentDidMount() {
@@ -25,7 +24,7 @@ class LatestBlocks extends React.Component {
         );
     }
 
-    fetchNewData() {
+    fetchNewData = () => {
         fetch(`${this.state.url}${this.state.count}`)
             .then(res => res.json())
             .then((blocks) => {
@@ -45,49 +44,44 @@ class LatestBlocks extends React.Component {
             maxWidth: "150px"
         };
 
-        if (!this.state.blocks.length) {
-            return (<p>loading...</p>)
-        } else {
-            return (
-                <div>
-                    <h3>Latest Blocks</h3>
-                    <Table striped responsive bordered hover size="sm">
-                        <thead>
-                            <tr>
-                                <th>Round</th>
-                                <th>Hash</th>
-                                <th>Proposer</th>
-                                <th>Reward</th>
-                                <th>Seed</th>
-                                <th>UTC Timestamp</th>
+        return !this.state.blocks.length ? <p>loading...</p> : (
+            <div>
+                <h3>Latest Blocks</h3>
+                <Table striped responsive bordered hover size="sm">
+                    <thead>
+                        <tr>
+                            <th>Round</th>
+                            <th>Hash</th>
+                            <th>Proposer</th>
+                            <th>Reward</th>
+                            <th>Seed</th>
+                            <th>UTC Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.blocks.reverse().map((element, index) => 
+                            <tr key={index}>
+                                <td className="text-truncate" style={tdStyle} >
+                                    <Link to={`/block/${element.round}`}><Button variant="primary" size="sm" >{element.round}</Button></Link>
+                                </td>
+                                <td className="text-truncate" style={tdStyle} >{element.hash}</td>
+                                <td className="text-truncate" style={tdStyle} >{element.proposer}</td>
+                                <td className="text-truncate" style={tdStyle} >{element.reward}</td>
+                                <td className="text-truncate" style={tdStyle} >{element.seed}</td>
+                                <td className="text-truncate" style={tdStyle} >{`${getTimeInUTCFormat(element.timestamp)}`}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.blocks.reverse().map((element, index) => {
-                                return (
-                                    <tr key={index}>
-                                        <td className="text-truncate" style={tdStyle} >
-                                            <Link to={`/block/${element.round}`}><Button variant="primary" size="sm" >{element.round}</Button></Link>
-                                        </td>
-                                        <td className="text-truncate" style={tdStyle} >{element.hash}</td>
-                                        <td className="text-truncate" style={tdStyle} >{element.proposer}</td>
-                                        <td className="text-truncate" style={tdStyle} >{element.reward}</td>
-                                        <td className="text-truncate" style={tdStyle} >{element.seed}</td>
-                                        <td className="text-truncate" style={tdStyle} >{`${getTimeInUTCFormat(element.timestamp)}`}</td>
-                                    </tr>
-                                )
-                            })}
+                            )
+                        }
 
 
-                        </tbody>
-                    </Table>
+                    </tbody>
+                </Table>
 
-                    <Link to="/">
-                        <Button variant="primary">Back</Button>
-                    </Link>
-                </div>
+                <Link to="/">
+                    <Button variant="primary">Back</Button>
+                </Link>
+            </div>
             )
-        }
     }
 }
 

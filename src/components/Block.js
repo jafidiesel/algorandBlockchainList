@@ -15,7 +15,7 @@ class Block extends React.Component {
 
     }
 
-    fetchBlockData() {
+    fetchBlockData = () => {
         fetch(`${this.state.url}${this.state.idBlock}`)
             .then(res => res.json())
             .then((data) => {
@@ -29,10 +29,7 @@ class Block extends React.Component {
     }
 
     render() {
-        if (!this.state.data.hash) {
-            return (<p>loading...</p>)
-        } else {
-            return (
+        return !this.state.data.hash ? <p>loading...</p> : (
                 <Container>
                     <Card className="mt-3 mb-3" border="secondary" >
                         <Card.Body>
@@ -57,7 +54,6 @@ class Block extends React.Component {
                 </Container>
             )
         }
-    }
 }
 
 
