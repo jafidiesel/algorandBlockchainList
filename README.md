@@ -1,3 +1,23 @@
+# Algorand blockchain list
+Live demo -> [link](https://algorand-blockchain-list.netlify.app/)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/93c9c630-6dad-4f01-8009-4e59c596ceb9/deploy-status)](https://app.netlify.com/sites/algorand-blockchain-list/deploys)
+
+## Requirements
+
+This app:
+
+- must use algoexplorer.io/ api
+- must be created using react + bootstrap
+- must display "latest blocks" and "latest transactions" button on home
+- When selecting "latest transactions" must display the last 10 transactions ('/transactions')
+- When selecting "latest blocks" must display the last 10 blocks ('/blocks')
+- latest transactions and latest blocks must be updated every 3 seconds
+- Every block must allow to get more information when selecting it by 'round' ('/block/:blockId")
+
+
+# Development settings
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
