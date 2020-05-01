@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
+import { Card, ListGroup, ListGroupItem, Button, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getTimeInUTCFormat } from '../helpers';
 
@@ -33,17 +33,17 @@ class Block extends React.Component {
             return( <p>loading...</p>)
         }else{
             return (
-                <div>
-                    <Card border="secondary" style={{ width: '40rem' }}>
+                <Container>
+                    <Card  className="mt-3 mb-3" border="secondary" >
                         <Card.Body>
-                            <Card.Title>Round {this.state.data.round}</Card.Title>
+                            <Card.Title><b>Round</b> {this.state.data.round}</Card.Title>
                         </Card.Body>
                         <ListGroup className="list-group-flush">
-                            <ListGroupItem>Hash: { this.state.data.hash }</ListGroupItem>
-                            <ListGroupItem>PrevHash: { this.state.data.prevHash }</ListGroupItem>
-                            <ListGroupItem>Proposer: { this.state.data.proposer }</ListGroupItem>
-                            <ListGroupItem>Reward: { this.state.data.reward }</ListGroupItem>
-                            <ListGroupItem>Seed: { this.state.data.seed }</ListGroupItem>
+                            <ListGroupItem><b>Hash:</b> { this.state.data.hash }</ListGroupItem>
+                            <ListGroupItem><b>PrevHash:</b> { this.state.data.prevHash }</ListGroupItem>
+                            <ListGroupItem><b>Proposer:</b> { this.state.data.proposer }</ListGroupItem>
+                            <ListGroupItem><b>Reward:</b> { this.state.data.reward }</ListGroupItem>
+                            <ListGroupItem><b>Seed:</b> { this.state.data.seed }</ListGroupItem>
                         </ListGroup>
                         <Card.Footer>
                         <small className="text-muted">UTC Timestamp: { getTimeInUTCFormat(this.state.data.timestamp) }</small>
@@ -54,7 +54,7 @@ class Block extends React.Component {
                         <Button variant="primary">Back</Button>
                     </Link>
     
-                </div>       
+                </Container>
             )
         }
     }
